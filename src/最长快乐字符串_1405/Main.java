@@ -1,5 +1,7 @@
 package 最长快乐字符串_1405;
 
+import java.util.Arrays;
+
 class Solution {
     public String longestDiverseString(int a, int b, int c) {
         StringBuilder res = new StringBuilder();
