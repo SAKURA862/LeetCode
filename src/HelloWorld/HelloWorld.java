@@ -1,25 +1,41 @@
 package HelloWorld;
 
-class Test{
-    int a;
-    Test(int a){
-        this.a = a;
-    }
-
-    @Override
-    public boolean equals(Object obj){
-        if(obj instanceof Test)
-            return this.a == ((Test)obj).a;
-        return false;
-    }
-}
-
 public class HelloWorld {
-    public static void main(String[] args) {
-        Test test1 = new Test(1);
-        Test test2 = new Test(1);
-        System.out.println(test1.hashCode());
-        System.out.println(test2.hashCode());
-        System.out.println(test1.equals(test2));
+    private static int val = 0;
+
+    public static void main(String[] args) throws InterruptedException {
+        Object obj1 = new Object();
+        Object obj2 = new Object();
+
+        Thread t1 = new Thread(() -> {
+            synchronized (obj1){
+                try {
+                    Thread.sleep(1000);
+                    synchronized (obj2){
+                        System.out.println("111");
+                    }
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+        Thread t2 = new Thread(() -> {
+            synchronized (obj2){
+                try {
+                    Thread.sleep(1000);
+                    synchronized (obj1){
+                        System.out.println("222");
+                    }
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+        t1.start();
+        t2.start();
+        Thread.sleep(1000);
+        System.out.println(val);
     }
 }
