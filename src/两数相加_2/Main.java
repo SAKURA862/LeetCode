@@ -13,19 +13,26 @@ class Solution {
     public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
         if(l1 == null) return l2;
         if(l2 == null) return l1;
-        ListNode p = l1, q = l2;
-        for(; p.next != null && q.next != null; p = p.next, q = q.next) p.val += q.val;
-        p.val += q.val;
-        if(p.next == null && q.next != null) p.next = q.next;
-        for(p = l1; p != null; p = p.next){
-            if(p.val < 10) continue;
-            if(p.next == null){
-                p.next = new ListNode(p.val / 10);
-            }
-            else p.next.val += p.val / 10;
+        ListNode head = l1;
+        while (l1.next != null && l2.next != null){
+            l1.val += l2.val;
+            l1 = l1.next;
+            l2 = l2.next;
+        }
+        l1.val += l2.val;
+        if(l1.next == null){
+            l1.next = l2.next;
+        }
+        ListNode p;
+        for(p = head; p.next != null; p = p.next){
+            p.next.val += p.val / 10;
             p.val %= 10;
         }
-        return l1;
+        if(p.val >= 10){
+            p.next = new ListNode(p.val / 10);
+            p.val %= 10;
+        }
+        return head;
     }
 }
 

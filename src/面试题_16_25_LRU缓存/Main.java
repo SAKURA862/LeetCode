@@ -1,13 +1,10 @@
-package LRU缓存_146;
-
-import sun.java2d.pipe.SolidTextRenderer;
+package 面试题_16_25_LRU缓存;
 
 import java.util.LinkedHashMap;
-import java.util.LinkedHashSet;
 import java.util.Map;
 
 class LRUCache extends LinkedHashMap<Integer, Integer> {
-    private int capacity;
+    int capacity;
 
     public LRUCache(int capacity) {
         super(capacity, 0.75f, true);
@@ -25,5 +22,11 @@ class LRUCache extends LinkedHashMap<Integer, Integer> {
     @Override
     protected boolean removeEldestEntry(Map.Entry<Integer, Integer> eldest) {
         return size() > capacity;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+
     }
 }
