@@ -1,4 +1,4 @@
-package 剑指_Offer_33_二叉搜索树的后序遍历序列;
+package 剑指Offer_33_二叉搜索树的后序遍历序列;
 
 class Solution {
     public boolean verifyPostorder(int[] postorder) {
