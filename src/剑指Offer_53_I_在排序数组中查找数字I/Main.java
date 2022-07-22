@@ -1,4 +1,4 @@
-package 剑指Offer53_I_在排序数组中查找数字I;
+package 剑指Offer_53_I_在排序数组中查找数字I;
 
 class Solution {
     public int search(int[] nums, int target) {

@@ -1,4 +1,4 @@
-package 剑指Offer45_把数组排成最小的数;
+package 剑指Offer_45_把数组排成最小的数;
 
 class Solution {
     public String minNumber(int[] nums) {

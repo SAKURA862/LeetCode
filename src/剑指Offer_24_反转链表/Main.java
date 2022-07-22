@@ -1,4 +1,4 @@
-package 剑指Offer24_反转链表;
+package 剑指Offer_24_反转链表;
 
 class ListNode {
     int val;

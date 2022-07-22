@@ -1,4 +1,4 @@
-package 剑指Offer10_II_青蛙跳台阶问题;
+package 剑指Offer_10_II_青蛙跳台阶问题;
 
 class Solution {
     private static final int MOD = (int) (1e9 + 7);

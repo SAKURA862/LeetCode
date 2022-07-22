@@ -1,28 +1,23 @@
 package 剑指Offer_14_II_剪绳子II;
 
 class Solution {
-    private static final int MOD = (int) (1e9 + 7);
-
     public int cuttingRope(int n) {
-        int len = (int) Math.floor(Math.sqrt(n));
-        int ans = 1;
-        int x = n / len;
-        for(int i = 0; i < x - 1; i++){
-            ans = ((ans % MOD) * (len % MOD)) % MOD;
+        if(n <= 3) return n - 1;
+        int b = n % 3, p = 1000000007;
+        long rem = 1, x = 3;
+        for(int a = n / 3 - 1; a > 0; a /= 2) {
+            if(a % 2 == 1) rem = (rem * x) % p;
+            x = (x * x) % p;
         }
-        if(n % len == 0){
-            ans = ((ans % MOD) * (len % MOD)) % MOD;
-        }
-        else{
-            ans = ((ans % MOD) * ((len + n) % MOD)) % MOD;
-        }
-        return ans;
+        if(b == 0) return (int)(rem * 3 % p);
+        if(b == 1) return (int)(rem * 4 % p);
+        return (int)(rem * 6 % p);
     }
 }
 
 public class Main {
     public static void main(String[] args) {
         Solution solution = new Solution();
-        System.out.println(solution.cuttingRope(1000));
+        System.out.println(solution.cuttingRope(10));
     }
 }

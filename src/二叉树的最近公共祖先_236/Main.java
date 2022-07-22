@@ -23,32 +23,23 @@ class TreeNode {
 }
 
 class Solution {
-    private List<TreeNode> pPath = new ArrayList<>();
-    private List<TreeNode> qPath = new ArrayList<>();
-    private TreeNode p, q;
-    private boolean pFound = false, qFound = false;
 
-    public TreeNode lowestCommonAncestor(TreeNode root, TreeNode _p, TreeNode _q) {
-        p = _p;
-        q = _q;
-        find(root);
-        int n = Math.min(pPath.size(), qPath.size());
-        for (int i = 0; i < n; i++) {
-            if (pPath.get(i) != qPath.get(i)) return pPath.get(i - 1);
+    public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+        if(root == null) return null;
+        if(root == p || root == q) return root;
+        if(find(root.left, p) && find(root.left, q)){
+            return lowestCommonAncestor(root.left, p, q);
+        }
+        if(find(root.right, p) && find(root.right, q)){
+            return lowestCommonAncestor(root.right, p, q);
         }
         return root;
     }
 
-    private void find(TreeNode root) {
-        if (root == null || (pFound && qFound)) return;
-        if (!pFound) pPath.add(root);
-        if (!qFound) qPath.add(root);
-        pFound = root == p | pFound;
-        qFound = root == q | qFound;
-        find(root.left);
-        find(root.right);
-        if (!pFound && !pPath.isEmpty()) pPath.remove(pPath.size() - 1);
-        if (!qFound && !qPath.isEmpty()) qPath.remove(qPath.size() - 1);
+    private boolean find(TreeNode root, TreeNode node) {
+        if(root == null) return false;
+        if(root == node) return true;
+        return (find(root.left, node) || find(root.right, node));
     }
 }
 

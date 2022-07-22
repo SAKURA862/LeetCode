@@ -1,4 +1,4 @@
-package 剑指Offer52_两个链表的第一个公共节点;
+package 剑指Offer_52_两个链表的第一个公共节点;
 
 class ListNode {
     int val;
