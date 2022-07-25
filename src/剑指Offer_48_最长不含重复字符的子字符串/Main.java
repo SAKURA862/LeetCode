@@ -1,26 +1,20 @@
 package 剑指Offer_48_最长不含重复字符的子字符串;
 
+import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Set;
+import java.util.Map;
 
 class Solution {
-    private Set<Character> set = new HashSet<>();
-
     public int lengthOfLongestSubstring(String s) {
-        char[] cs = s.toCharArray();
-        int i = 0, j = 0, n = cs.length, max = 0;
-        while (i < n){
-            while (j < n && !set.contains(cs[j])){
-                set.add(cs[j]);
-                j++;
-            }
-            max = Math.max(max, j - i);
-            while (i < j && j < n && cs[i] != cs[j]){
-                set.remove(cs[i++]);
-            }
-            set.remove(cs[i++]);
+        Map<Character, Integer> dic = new HashMap<>();
+        int i = -1, res = 0;
+        for(int j = 0; j < s.length(); j++) {
+            if(dic.containsKey(s.charAt(j)))
+                i = Math.max(i, dic.get(s.charAt(j))); // 更新左指针 i
+            dic.put(s.charAt(j), j); // 哈希表记录
+            res = Math.max(res, j - i); // 更新结果
         }
-        return max;
+        return res;
     }
 }
 
