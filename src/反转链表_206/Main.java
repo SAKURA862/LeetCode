@@ -8,7 +8,9 @@ class ListNode {
     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
 }
 
-
+/**
+ * 迭代
+ */
 class Solution {
     public ListNode reverseList(ListNode head) {
         ListNode cur = head, nxt = head, pre = null;
@@ -22,25 +24,22 @@ class Solution {
     }
 }
 
+/**
+ * 递归
+ */
+class Solution2{
+    public ListNode reverseList(ListNode head) {
+        if(head == null) return null;
+        if(head.next == null) return head;
+        ListNode tail = reverseList(head.next);
+        head.next.next = head;
+        head.next = null;
+        return tail;
+    }
+}
+
 public class Main {
     public static void main(String[] args) {
 
     }
 }
-
-/*
- * class Solution {
- *     public ListNode reverseList(ListNode head) {
- *         if(head == null || head.next == null) return head;
- *         ListNode pre = null, cur = head, next = head.next;
- *         while(next != null){
- *             cur.next = pre;
- *             pre = cur;
- *             cur = next;
- *             next = next.next;
- *         }
- *         cur.next = pre;
- *         return cur;
- *     }
- * }
- * */
