@@ -27,14 +27,15 @@ class Solution {
 
     public boolean isBalanced(TreeNode root) {
         if (root == null) return true;
-        ans &= Math.abs(getDepth(root.left) - getDepth(root.right)) <= 1;
+        ans = (Math.abs(getHeight(root.left) - getHeight(root.right)) <= 1) & ans;
         return ans;
     }
 
-    private int getDepth(TreeNode root) {
+    private int getHeight(TreeNode root) {
+        // 已经不平衡或节点为空时直接返回0
         if (!ans || root == null) return 0;
-        int lDepth = getDepth(root.left);
-        int rDepth = getDepth(root.right);
+        int lDepth = getHeight(root.left);
+        int rDepth = getHeight(root.right);
         ans &= Math.abs(lDepth - rDepth) <= 1;
         return Math.max(lDepth, rDepth) + 1;
     }
