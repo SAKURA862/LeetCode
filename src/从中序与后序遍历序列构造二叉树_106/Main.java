@@ -39,7 +39,7 @@ class Solution {
         int root = postorder[pe];
         int ri = map.get(root);
         return new TreeNode(
-                inorder[ri],
+                root,
                 build(is, ri - 1, ps, ps + ri - is - 1),
                 build(ri + 1, ie, ps + ri - is, pe - 1)
         );
