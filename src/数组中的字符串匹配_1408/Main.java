@@ -1,7 +1,6 @@
 package 数组中的字符串匹配_1408;
 
 import java.util.*;
-import java.util.function.BiConsumer;
 
 /**
  * 暴力
