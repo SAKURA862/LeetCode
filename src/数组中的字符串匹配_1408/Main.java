@@ -234,7 +234,36 @@ class Solution3 {
 
 public class Main {
     public static void main(String[] args) {
-        Solution3 solution = new Solution3();
-        System.out.println(solution.stringMatching(new String[]{"uexk","aeuexkf","wgxih","yuexk","gxea","yuexkm","ypmfx","jjuexkmb","wqpri","aeuexkfpo","kqtnz","pkqtnza","nrbb","hmypmfx","krqs","jjuexkmbyt","zvru","ypmfxj"}));
+        Random random = new Random();
+        String[] arr = new String[10000];
+        for(int i = 0; i < 10000; i++){
+            int len = random.nextInt(20);
+            StringBuilder sb = new StringBuilder();
+            for(int j = 0; j < len; j++){
+                sb.append((char) (random.nextInt(26) + 'a'));
+            }
+            arr[i] = sb.toString();
+        }
+
+        Solution solution = new Solution();
+        Solution2 solution2 = new Solution2();
+        Solution3 solution3 = new Solution3();
+
+//        System.out.println(solution.stringMatching(new String[]{"uexk","aeuexkf","wgxih","yuexk","gxea","yuexkm","ypmfx","jjuexkmb","wqpri","aeuexkfpo","kqtnz","pkqtnza","nrbb","hmypmfx","krqs","jjuexkmbyt","zvru","ypmfxj"}));
+        long startTime = System.currentTimeMillis();
+        List<String> res = solution.stringMatching(arr);
+        long overTime = System.currentTimeMillis();
+        System.out.println("暴力解法: " + (overTime - startTime));
+
+//        long startTime2 = System.nanoTime();
+//        List<String> res2 = solution2.stringMatching(arr);
+//        long overTime2 = System.nanoTime();
+//        System.out.println("kmp算法: " + (overTime2 - startTime2));
+
+        long startTime3 = System.currentTimeMillis();
+        List<String> res3 = solution3.stringMatching(arr);
+        long overTime3 = System.currentTimeMillis();
+
+        System.out.println("ac自动机: " + (overTime3 - startTime3));
     }
 }
