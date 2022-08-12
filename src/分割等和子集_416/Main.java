@@ -11,7 +11,6 @@ class Solution {
         int[] f = new int[m + 1];
         for(int i = 1; i < n; i++){
             for(int j = m; j >= 1; j--){
-                f[j] = f[j];
                 if(j >= nums[i]){
                     f[j] = Math.max(f[j], f[j - nums[i]] + nums[i]);
                 }
